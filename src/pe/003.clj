@@ -1,13 +1,14 @@
 (ns pe.003)
 
 (require '[util.primes :refer [primes]])
+(require '[util.numbers :refer [div-mod isqrt]])
 
 (defn pr003
   [target]
   (loop [[p & ps] primes
          n target]
-    (if (>= p (int (Math/sqrt n))) n+1 ; TODO optimize terminal condition later
-        (let [r (rem n p) q (quot n p)] ; TODO duplication 
+    (if (>= p (isqrt n)) n
+        (let [[q r] (div-mod n p)]
           (if (= 0 r) (recur primes q) (recur ps n))))))
 
 ; ---- $ lein run -m pe.003

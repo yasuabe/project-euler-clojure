@@ -20,3 +20,9 @@
    (let [n (+ (* q d) r)]
      (= (div-mod n d) [q r]))))
 
+(defspec squared-isqrt-does-not-exceeds-given-value
+  (prop/for-all
+   [n gen/nat]
+   (let [r (isqrt n) s (+ r 1) pow (fn [m] (* m m))]
+     (and (<= (pow r) n) (< n (pow s))))))
+
