@@ -13,7 +13,7 @@
       (tree ns1 (cons t2 (:phs t1)))
       (tree ns2 (cons t1 (:phs t2))))))
 
-(defn merge-ph ; TODO rename
+(defn merge-ph
   [h1 h2]
   (match [h1 h2]
          [h :empty] h
@@ -38,14 +38,14 @@
         (if (empty? phr) ph1
             (merge-ph (merge-ph ph1 (first phr)) (merge-all (rest phr)))))))
 
-(defn mergePair ; TODO kebab-case
+(defn merge-pair
   [phs]
   (if (empty? phs) :empty
       (let [h (first phs)
             t (rest phs)]
         (if (empty? t) h
             (let [h2 (first t) t2 (rest t)]
-              (merge-ph (merge-ph h h2) (mergePair t2)))))))
+              (merge-ph (merge-ph h h2) (merge-pair t2)))))))
 
 (defn spin
   [start wheel]

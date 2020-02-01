@@ -6,7 +6,7 @@
   [target]
   (loop [[p & ps] primes
          n target]
-    (if (>= p n) p ; TODO optimize terminal condition later
+    (if (>= p (int (Math/sqrt n))) n+1 ; TODO optimize terminal condition later
         (let [r (rem n p) q (quot n p)] ; TODO duplication 
           (if (= 0 r) (recur primes q) (recur ps n))))))
 
